@@ -1,0 +1,252 @@
+{
+  "agent_id": "company_strategic_analyzer",
+  "agent_type": "research",
+  "version": "1.1.0",
+  "tier": "community",
+  "executor": "mcp",
+  "model": "claude-3-5-sonnet-20241022",
+  "temperature": 0.4,
+  "created": "2026-02-07",
+  "author": "Custom Agent Builder",
+  "description": "Evaluates companies' business models, competitive advantages, operational efficiency, and growth catalysts to determine structural investment strength.",
+  "tags": [
+    "investment-analysis",
+    "competitive-strategy",
+    "business-model",
+    "operational-efficiency",
+    "growth-analysis",
+    "risk-assessment",
+    "due-diligence"
+  ],
+  "system_prompt": "You are a company strategic analysis agent specialized in evaluating the structural strength of businesses as investment opportunities.\n\nYour role is to:\n1. Analyze business models and competitive positioning\n2. Assess operational efficiency and supply chain structures\n3. Identify and evaluate growth catalysts with realistic probability assessments\n4. Examine management quality, track records, and incentive alignment\n5. Identify structural risks including regulatory, currency, and market concentration exposures\n6. Apply Porter's Five Forces framework to assess industry attractiveness\n7. Use Jobs-to-be-Done framework to understand customer value creation\n\nAnalytical Frameworks:\n\n**Porter's Five Forces:**\n- Competitive Rivalry: Assess intensity, number of competitors, differentiation, switching costs\n- Threat of New Entrants: Evaluate barriers to entry, capital requirements, brand loyalty\n- Threat of Substitutes: Identify alternative solutions, price-performance tradeoffs\n- Bargaining Power of Suppliers: Analyze supplier concentration, switching costs, integration threats\n- Bargaining Power of Buyers: Examine buyer concentration, price sensitivity, information levels\n- Synthesize into overall industry attractiveness score\n\n**Jobs-to-be-Done (Christensen/HBR):**\n- Identify the functional, emotional, and social jobs customers hire the product to do\n- Map job outcomes and importance vs satisfaction scores\n- Assess how well current solutions address the job\n- Identify obstacles and competing solutions\n- Evaluate opportunity gaps (high importance, low satisfaction)\n- Connect value proposition to job fulfillment\n\nApproach:\n- Synthesize data from SEC filings, financial reports, and market data\n- Apply structured frameworks consistently across analyses\n- Provide evidence-based assessments with confidence scores\n- Flag areas requiring deeper investigation\n- Compare against industry peers and historical benchmarks\n\nOutput format:\n- Structured analysis following the ontology schema\n- Quantified assessments where possible (scores, percentages, timelines)\n- Clear identification of assumptions and data sources\n- Confidence levels for major conclusions\n- Actionable insights for investment decision-making\n\nConstraints:\n- Focus on structural factors, not short-term market dynamics\n- Distinguish between durable advantages and temporary conditions\n- Highlight both bullish and bearish evidence objectively\n- Flag information gaps or areas needing primary research",
+  "mcp_servers": [
+    {
+      "name": "sec-filings",
+      "command": "python",
+      "args": ["-m", "sec_api_mcp"],
+      "env": {
+        "SEC_API_KEY": "${SEC_API_KEY}",
+        "CACHE_DIR": "/tmp/sec_cache"
+      },
+      "description": "Access SEC EDGAR filings (10-K, 10-Q, 8-K, proxies) for detailed company disclosures"
+    },
+    {
+      "name": "yahoo-finance",
+      "command": "node",
+      "args": ["yahoo-finance-mcp/index.js"],
+      "env": {
+        "YAHOO_API_KEY": "${YAHOO_API_KEY}",
+        "RATE_LIMIT": "100"
+      },
+      "description": "Financial data, stock prices, ratios, and market metrics"
+    },
+    {
+      "name": "financial-modeling-prep",
+      "command": "node",
+      "args": ["fmp-mcp/index.js"],
+      "env": {
+        "FMP_API_KEY": "${FMP_API_KEY}"
+      },
+      "description": "Company financials, ratios, DCF models, and peer comparisons"
+    }
+  ],
+  "skills": [],
+  "example_queries": [
+    {
+      "query": "Analyze Tesla's competitive advantages in the EV market and assess their sustainability over the next 5 years",
+      "expected_entities": [
+        "COMPANY",
+        "COMPETITIVE_ADVANTAGE",
+        "MOAT_FACTOR",
+        "SUSTAINABILITY_ASSESSMENT",
+        "COMPETITOR",
+        "BARRIER_TO_ENTRY"
+      ],
+      "expected_insights": [
+        "Battery technology leadership assessment",
+        "Manufacturing scale advantages",
+        "Brand strength evaluation",
+        "Threats from legacy automakers and Chinese competitors",
+        "Software/autonomy moat analysis"
+      ]
+    },
+    {
+      "query": "Evaluate Costco's vertical integration strategy and the operational efficiencies it creates",
+      "expected_entities": [
+        "COMPANY",
+        "BUSINESS_MODEL",
+        "SUPPLY_CHAIN",
+        "VERTICAL_INTEGRATION",
+        "OPERATIONAL_EFFICIENCY",
+        "COST_STRUCTURE"
+      ],
+      "expected_insights": [
+        "Kirkland Signature private label analysis",
+        "Distribution center efficiency metrics",
+        "Supplier relationship structure",
+        "Cost advantages vs traditional retail",
+        "Risks from supply concentration"
+      ]
+    },
+    {
+      "query": "What are NVIDIA's key growth catalysts for 2026-2028 and what needs to go right?",
+      "expected_entities": [
+        "COMPANY",
+        "GROWTH_CATALYST",
+        "SUCCESS_FACTOR",
+        "TIMELINE",
+        "MARKET_POSITION",
+        "STRUCTURAL_RISK"
+      ],
+      "expected_insights": [
+        "AI/datacenter growth trajectory",
+        "Customer concentration analysis",
+        "Competitive threats from AMD, custom chips",
+        "Manufacturing dependencies (TSMC)",
+        "Regulatory risks and export controls",
+        "Success probabilities for each catalyst"
+      ]
+    },
+    {
+      "query": "Assess Microsoft's management team quality and incentive alignment",
+      "expected_entities": [
+        "COMPANY",
+        "MANAGEMENT_TEAM",
+        "EXECUTIVE",
+        "TRACK_RECORD",
+        "INCENTIVE_ALIGNMENT"
+      ],
+      "expected_insights": [
+        "Satya Nadella's transformation track record",
+        "Executive team tenure and stability",
+        "Compensation structure analysis",
+        "Stock ownership levels",
+        "Strategic decision-making quality",
+        "Alignment with long-term value creation"
+      ]
+    },
+    {
+      "query": "Identify the biggest structural risks to Airbnb's business model",
+      "expected_entities": [
+        "COMPANY",
+        "BUSINESS_MODEL",
+        "STRUCTURAL_RISK",
+        "RISK_FACTOR",
+        "MITIGATION_STRATEGY",
+        "MARKET_POSITION"
+      ],
+      "expected_insights": [
+        "Regulatory risks by major markets",
+        "Platform disintermediation threats",
+        "Supply concentration in key cities",
+        "Brand/trust vulnerabilities",
+        "Competitive positioning vs hotels and VRBO",
+        "Mitigation strategies and effectiveness"
+      ]
+    },
+    {
+      "query": "Apply Porter's Five Forces to analyze the streaming media industry and Netflix's position within it",
+      "expected_entities": [
+        "COMPANY",
+        "PORTER_FIVE_FORCES",
+        "COMPETITIVE_RIVALRY",
+        "THREAT_OF_NEW_ENTRANTS",
+        "THREAT_OF_SUBSTITUTES",
+        "BARGAINING_POWER_SUPPLIERS",
+        "BARGAINING_POWER_BUYERS",
+        "COMPETITOR"
+      ],
+      "expected_insights": [
+        "Intensity of rivalry (Disney+, HBO Max, Amazon Prime, Apple TV+)",
+        "Barriers to entry analysis (content costs, subscriber acquisition)",
+        "Substitute threats (YouTube, TikTok, linear TV, piracy)",
+        "Content supplier power (studios, production companies, talent)",
+        "Customer bargaining power (low switching costs, subscription fatigue)",
+        "Overall industry attractiveness score"
+      ]
+    },
+    {
+      "query": "Use Jobs-to-be-Done framework to analyze what job customers hire Peloton to do and identify opportunity gaps",
+      "expected_entities": [
+        "COMPANY",
+        "BUSINESS_MODEL",
+        "CUSTOMER_JOB",
+        "FUNCTIONAL_JOB",
+        "EMOTIONAL_JOB",
+        "SOCIAL_JOB",
+        "JOB_OUTCOME",
+        "PRODUCT_SOLUTION",
+        "VALUE_PROPOSITION",
+        "COMPETING_SOLUTION",
+        "OBSTACLE"
+      ],
+      "expected_insights": [
+        "Functional job: Get convenient, effective workout at home",
+        "Emotional job: Feel motivated, accomplished, part of community",
+        "Social job: Signal fitness commitment, share achievements",
+        "Job outcomes: Importance vs satisfaction mapping",
+        "Competing solutions: Gym memberships, YouTube fitness, outdoor running, other connected fitness",
+        "Obstacles: Space constraints, cost, motivation maintenance",
+        "Opportunity gaps: Areas of high importance but low satisfaction"
+      ]
+    }
+  ],
+  "performance": {
+    "forecasts_contributed": 0,
+    "avg_brier_impact": 0.0,
+    "avg_confidence": 0.0,
+    "accuracy_rate": 0.0
+  },
+  "usage": {
+    "total_executions": 0,
+    "successful_executions": 0,
+    "failed_executions": 0,
+    "tokens_used": 0,
+    "cost_usd": 0.0,
+    "last_30_days": {
+      "executions": 0,
+      "tokens": 0,
+      "cost_usd": 0.0
+    },
+    "avg_execution_time_ms": 0
+  },
+  "ontology_stats": {
+    "entities": 41,
+    "relationships": 54,
+    "last_updated": "2026-02-07",
+    "evolution_commits": 1
+  },
+  "performance_targets": {
+    "avg_confidence": 0.75,
+    "accuracy_rate": 0.82,
+    "max_execution_time_ms": 8000,
+    "cost_per_query_usd": 0.15
+  },
+  "capabilities": {
+    "can_forecast": true,
+    "can_backtest": true,
+    "can_evolve_ontology": true,
+    "supports_batch": true,
+    "requires_human_review": true
+  },
+  "limitations": [
+    "Cannot access real-time market data or intraday price movements",
+    "Relies on publicly disclosed information; no access to proprietary data or management interviews",
+    "Qualitative assessments (e.g., management quality) require judgment and may vary",
+    "Cannot predict macroeconomic conditions or black swan events",
+    "International companies may have limited English-language disclosure",
+    "Historical performance does not guarantee future results"
+  ],
+  "updates": [
+    {
+      "version": "1.0.0",
+      "date": "2026-02-07",
+      "changes": "Initial release with comprehensive strategic analysis framework"
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-02-07",
+      "changes": "Added Porter's Five Forces framework (6 entities, 9 relationships) and Jobs-to-be-Done framework (11 entities, 10 relationships). Total entities: 41, Total relationships: 54. Enhanced system prompt with detailed framework guidance."
+    }
+  ]
+}

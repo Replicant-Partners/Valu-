@@ -1,0 +1,403 @@
+erDiagram
+    COMPANY ||--o{ BUSINESS_MODEL : "operates-under"
+    COMPANY ||--o{ COMPETITIVE_ADVANTAGE : "possesses"
+    COMPANY ||--|| MANAGEMENT_TEAM : "led-by"
+    COMPANY ||--o{ GROWTH_CATALYST : "pursues"
+    COMPANY ||--o{ STRUCTURAL_RISK : "faces"
+    COMPANY ||--o{ OPERATIONAL_METRIC : "tracks"
+    COMPANY ||--o{ MARKET_POSITION : "holds"
+
+    BUSINESS_MODEL ||--o{ REVENUE_STREAM : "generates"
+    BUSINESS_MODEL ||--o{ COST_STRUCTURE : "maintains"
+    BUSINESS_MODEL }o--o{ SUPPLY_CHAIN : "integrates"
+
+    COMPETITIVE_ADVANTAGE ||--o{ MOAT_FACTOR : "derives-from"
+    COMPETITIVE_ADVANTAGE }o--|| SUSTAINABILITY_ASSESSMENT : "evaluated-by"
+
+    MANAGEMENT_TEAM ||--o{ EXECUTIVE : "includes"
+    EXECUTIVE ||--o{ TRACK_RECORD : "demonstrates"
+    EXECUTIVE ||--o{ INCENTIVE_ALIGNMENT : "compensated-via"
+
+    GROWTH_CATALYST ||--o{ SUCCESS_FACTOR : "depends-on"
+    GROWTH_CATALYST ||--|| TIMELINE : "projected-over"
+    GROWTH_CATALYST }o--o{ MARKET_POSITION : "impacts"
+
+    STRUCTURAL_RISK ||--o{ RISK_FACTOR : "comprises"
+    STRUCTURAL_RISK }o--|| MITIGATION_STRATEGY : "addressed-by"
+
+    SUPPLY_CHAIN ||--o{ VERTICAL_INTEGRATION : "structured-as"
+    SUPPLY_CHAIN ||--o{ OPERATIONAL_EFFICIENCY : "enables"
+    SUPPLY_CHAIN ||--o{ SUPPLY_RISK : "exposes"
+
+    MARKET_POSITION ||--o{ COMPETITOR : "contested-by"
+    MARKET_POSITION ||--o{ MARKET_SHARE : "measured-by"
+    MARKET_POSITION ||--o{ BARRIER_TO_ENTRY : "protected-by"
+
+    COMPANY ||--|| PORTER_FIVE_FORCES : "analyzed-via"
+    PORTER_FIVE_FORCES ||--|| COMPETITIVE_RIVALRY : "assesses"
+    PORTER_FIVE_FORCES ||--|| THREAT_OF_NEW_ENTRANTS : "evaluates"
+    PORTER_FIVE_FORCES ||--|| THREAT_OF_SUBSTITUTES : "evaluates"
+    PORTER_FIVE_FORCES ||--|| BARGAINING_POWER_SUPPLIERS : "evaluates"
+    PORTER_FIVE_FORCES ||--|| BARGAINING_POWER_BUYERS : "evaluates"
+
+    COMPETITIVE_RIVALRY }o--o{ COMPETITOR : "includes"
+    THREAT_OF_NEW_ENTRANTS }o--o{ BARRIER_TO_ENTRY : "considers"
+    BARGAINING_POWER_SUPPLIERS }o--o{ SUPPLY_CHAIN : "impacts"
+
+    BUSINESS_MODEL ||--o{ CUSTOMER_JOB : "fulfills"
+    CUSTOMER_JOB ||--o{ FUNCTIONAL_JOB : "includes"
+    CUSTOMER_JOB ||--o{ EMOTIONAL_JOB : "includes"
+    CUSTOMER_JOB ||--o{ SOCIAL_JOB : "includes"
+    CUSTOMER_JOB ||--o{ JOB_OUTCOME : "delivers"
+    CUSTOMER_JOB }o--o{ PRODUCT_SOLUTION : "addressed-by"
+    PRODUCT_SOLUTION ||--o{ VALUE_PROPOSITION : "offers"
+    CUSTOMER_JOB ||--o{ OBSTACLE : "hindered-by"
+    CUSTOMER_JOB ||--o{ COMPETING_SOLUTION : "alternative-to"
+
+    COMPANY {
+        string ticker
+        string name
+        string sector
+        string industry
+        string market_cap
+        string headquarters
+        datetime analysis_date
+    }
+
+    BUSINESS_MODEL {
+        string model_type
+        string value_proposition
+        string customer_segments
+        string distribution_channels
+        float margin_profile
+        string unit_economics
+    }
+
+    COMPETITIVE_ADVANTAGE {
+        string advantage_type
+        string description
+        float strength_score
+        string sustainability_rating
+        string source
+        datetime identified_date
+    }
+
+    MOAT_FACTOR {
+        string factor_type
+        string description
+        float durability_score
+        string evidence
+    }
+
+    MANAGEMENT_TEAM {
+        int team_size
+        float avg_tenure_years
+        float experience_score
+        string leadership_quality
+        datetime assessment_date
+    }
+
+    EXECUTIVE {
+        string name
+        string role
+        int tenure_years
+        float compensation_usd
+        float equity_ownership_pct
+        string previous_companies
+    }
+
+    TRACK_RECORD {
+        string achievement
+        string company
+        datetime date
+        string impact
+        float success_rating
+    }
+
+    INCENTIVE_ALIGNMENT {
+        string compensation_structure
+        float ltip_pct
+        float equity_pct
+        string vesting_schedule
+        string alignment_assessment
+    }
+
+    GROWTH_CATALYST {
+        string catalyst_type
+        string description
+        string timeline
+        float probability
+        float potential_impact
+        datetime identified_date
+    }
+
+    SUCCESS_FACTOR {
+        string factor
+        string requirement
+        float criticality
+        string current_status
+    }
+
+    STRUCTURAL_RISK {
+        string risk_category
+        string description
+        float severity
+        float probability
+        string impact_area
+        datetime identified_date
+    }
+
+    RISK_FACTOR {
+        string factor_type
+        string description
+        float exposure_level
+        string timeframe
+    }
+
+    MITIGATION_STRATEGY {
+        string strategy
+        string description
+        float effectiveness
+        string implementation_status
+    }
+
+    SUPPLY_CHAIN {
+        string structure_type
+        int supplier_count
+        string geographic_distribution
+        float concentration_risk
+        string resilience_rating
+    }
+
+    VERTICAL_INTEGRATION {
+        string integration_type
+        string scope
+        float integration_pct
+        string rationale
+        string efficiency_impact
+    }
+
+    OPERATIONAL_EFFICIENCY {
+        string metric_name
+        float value
+        string benchmark
+        string trend
+        datetime measurement_date
+    }
+
+    OPERATIONAL_METRIC {
+        string metric_type
+        float current_value
+        float historical_avg
+        float industry_avg
+        string trend
+        datetime period_end
+    }
+
+    MARKET_POSITION {
+        string market_segment
+        float market_share_pct
+        int rank
+        string position_strength
+        datetime assessment_date
+    }
+
+    COMPETITOR {
+        string name
+        string ticker
+        float market_share_pct
+        string competitive_threat
+        string differentiation
+    }
+
+    REVENUE_STREAM {
+        string stream_type
+        float annual_revenue_usd
+        float revenue_pct
+        float growth_rate
+        string predictability
+    }
+
+    COST_STRUCTURE {
+        string cost_category
+        float annual_cost_usd
+        float cost_pct
+        string variability
+        string optimization_potential
+    }
+
+    TIMELINE {
+        string period
+        datetime start_date
+        datetime end_date
+        string milestones
+    }
+
+    SUSTAINABILITY_ASSESSMENT {
+        float sustainability_score
+        string rationale
+        string threats
+        string opportunities
+        datetime assessment_date
+    }
+
+    MARKET_SHARE {
+        float percentage
+        string geography
+        string segment
+        string trend
+        datetime period
+    }
+
+    BARRIER_TO_ENTRY {
+        string barrier_type
+        string description
+        float strength
+        string impact_on_competition
+    }
+
+    SUPPLY_RISK {
+        string risk_type
+        string description
+        float severity
+        string mitigation
+    }
+
+    PORTER_FIVE_FORCES {
+        float overall_industry_attractiveness
+        string analysis_summary
+        datetime assessment_date
+        string analyst_notes
+    }
+
+    COMPETITIVE_RIVALRY {
+        float intensity_score
+        int number_of_competitors
+        string market_growth_rate
+        float industry_concentration
+        string differentiation_level
+        float switching_costs
+        string exit_barriers
+        string assessment
+    }
+
+    THREAT_OF_NEW_ENTRANTS {
+        float threat_level
+        string capital_requirements
+        string economies_of_scale
+        string brand_loyalty_strength
+        string regulatory_barriers
+        string access_to_distribution
+        float expected_retaliation
+        string assessment
+    }
+
+    THREAT_OF_SUBSTITUTES {
+        float threat_level
+        string substitute_products
+        float price_performance_tradeoff
+        float switching_costs
+        string buyer_propensity
+        string emerging_alternatives
+        string assessment
+    }
+
+    BARGAINING_POWER_SUPPLIERS {
+        float power_level
+        int supplier_concentration
+        float switching_costs
+        string importance_to_suppliers
+        string differentiation_of_inputs
+        string forward_integration_threat
+        string assessment
+    }
+
+    BARGAINING_POWER_BUYERS {
+        float power_level
+        int buyer_concentration
+        float switching_costs
+        float price_sensitivity
+        string differentiation_importance
+        string backward_integration_threat
+        float buyer_information_level
+        string assessment
+    }
+
+    CUSTOMER_JOB {
+        string job_statement
+        string job_category
+        string customer_segment
+        float importance_score
+        float satisfaction_score
+        string context
+        datetime identified_date
+    }
+
+    FUNCTIONAL_JOB {
+        string task_description
+        string desired_outcome
+        float importance
+        float current_satisfaction
+        string performance_metrics
+    }
+
+    EMOTIONAL_JOB {
+        string emotional_need
+        string feeling_sought
+        float importance
+        float current_satisfaction
+        string triggers
+    }
+
+    SOCIAL_JOB {
+        string social_need
+        string perception_sought
+        float importance
+        float current_satisfaction
+        string social_context
+    }
+
+    JOB_OUTCOME {
+        string outcome_statement
+        string outcome_type
+        float importance_to_customer
+        float current_performance
+        float opportunity_score
+        string measurement_criteria
+    }
+
+    PRODUCT_SOLUTION {
+        string product_name
+        string solution_type
+        string features
+        float job_fit_score
+        float adoption_rate
+        string differentiation
+    }
+
+    VALUE_PROPOSITION {
+        string proposition_statement
+        string pain_relievers
+        string gain_creators
+        float customer_perceived_value
+        string competitive_advantage
+        string pricing_strategy
+    }
+
+    OBSTACLE {
+        string obstacle_type
+        string description
+        float severity
+        string impact_on_job
+        string current_workarounds
+    }
+
+    COMPETING_SOLUTION {
+        string solution_name
+        string provider
+        string approach
+        float market_share
+        string strengths
+        string weaknesses
+        float customer_satisfaction
+    }
