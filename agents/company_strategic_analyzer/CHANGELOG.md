@@ -1,5 +1,81 @@
 # Changelog - Company Strategic Analyzer Agent
 
+## [1.2.0] - 2026-02-07
+
+### 🎨 Output Format Transformation
+
+**Major Change: Narrative Prose Format**
+
+The agent now produces all analysis exclusively in narrative paragraph form, eliminating structured outputs like bullet points, tables, and numerical scoring systems.
+
+#### What Changed
+
+**Removed:**
+- ❌ All numerical scores and ratings (X/10 scales, percentage-based ratings)
+- ❌ Star ratings or numbered assessments of qualitative factors
+- ❌ Bullet point lists in final analysis output
+- ❌ Structured tables for comparisons
+- ❌ Confidence scores as numbers (0.0-1.0)
+
+**Added:**
+- ✅ Flowing narrative paragraphs with smooth transitions
+- ✅ Qualitative descriptors: strong/weak, high/moderate/low, substantial/limited
+- ✅ Descriptive confidence levels: high confidence, moderate confidence, limited visibility
+- ✅ Context-embedded insights within prose
+- ✅ Natural integration of data sources and assumptions
+
+#### Quantified Data Policy
+
+Numbers are now used **ONLY** for actual business metrics:
+- ✅ Revenue figures ($435.6 billion)
+- ✅ Profit margins (46% gross margin)
+- ✅ Unit volumes (200 million iPhones)
+- ✅ Growth rates (16% year-over-year)
+- ✅ Market share percentages (92% retention rate)
+- ✅ Actual dollar amounts ($74.3 million compensation)
+
+Numbers are **NOT** used for qualitative assessments:
+- ❌ "Moat strength: 9/10" → ✅ "exceptionally strong and durable moat"
+- ❌ "Risk severity: 7.5/10" → ✅ "substantial risk with moderate probability"
+- ❌ "Confidence: 0.82" → ✅ "high confidence in this assessment"
+
+#### System Prompt Updates
+
+Updated the system prompt with explicit instructions:
+- "NARRATIVE PROSE ONLY: Write all analysis in flowing paragraphs"
+- "NO NUMERICAL SCORES OR RATINGS: Never use X/10 scales..."
+- "Use qualitative language exclusively: strong/weak, high/moderate/low..."
+- "CRITICAL: Eliminate all scoring systems, rating scales, and numerical assessments"
+
+#### Benefits
+
+1. **More Professional**: Investment analyses typically use narrative prose, not game-like ratings
+2. **Nuanced Communication**: Qualitative language better captures complexity and uncertainty
+3. **Better Readability**: Flowing paragraphs are easier to read than fragmented lists
+4. **Context Integration**: Insights embedded in narrative provide better understanding than isolated scores
+
+#### Example Transformation
+
+**Before (v1.1.0):**
+```
+### Competitive Advantage: 9/10 (Wide Moat)
+
+**Ecosystem Lock-In:**
+- Strength Score: 9.5/10
+- Sustainability: Very High
+- Evidence:
+  • 92% iPhone retention rate
+  • 2.6 devices per user
+  • iMessage/FaceTime network effects
+```
+
+**After (v1.2.0):**
+```
+Apple possesses an exceptionally strong competitive advantage through ecosystem integration, creating a formidable and durable economic moat. The company's retention rate of ninety-two percent for iPhone users demonstrates the effectiveness of switching costs and network effects, with customers owning an average of 2.6 Apple devices that reinforce the ecosystem's value. Features like iMessage and FaceTime create network effects where each additional user increases the platform's value for existing users...
+```
+
+---
+
 ## [1.1.0] - 2026-02-07
 
 ### ✨ Major Enhancements
